@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archit Agrawal Study Studio</title>
+  <meta name="description" content="Official creator website of Archit Agrawal Study Studio - GK, Science, SST, Amazing Facts, Shorts & Long Videos.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top left, rgba(255,0,0,0.15), transparent 20%),
+                  radial-gradient(circle at top right, rgba(255,200,0,0.10), transparent 20%),
+                  radial-gradient(circle at bottom, rgba(255,0,0,0.08), transparent 25%),
+                  linear-gradient(180deg, #030303, #080808, #0b0b0b);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      opacity: 0.25;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(0,0,0,0.55);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #ff2d2d;
+      text-shadow: 0 0 18px rgba(255,0,0,0.6);
+    }
+
+    nav a {
+      color: #d4d4d4;
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff4444;
+    }
+
+    section {
+      width: 100%;
+      padding: 80px 6%;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-left {
+      flex: 1;
+      min-width: 300px;
+      animation: fadeUp 1s ease;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,0,0,0.12);
+      border: 1px solid rgba(255,0,0,0.28);
+      color: #ffd7d7;
+      font-size: 0.9rem;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(255,0,0,0.1);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 5.8rem);
+      line-height: 0.95;
+      font-weight: 900;
+    }
+
+    .hero h1 .red {
+      color: #ff2d2d;
+      text-shadow: 0 0 24px rgba(255,0,0,0.6);
+    }
+
+    .hero h1 .gold {
+      color: #ffd44d;
+      text-shadow: 0 0 20px rgba(255,215,0,0.28);
+    }
+
+    .hero p {
+      margin-top: 28px;
+      color: #d0d0d0;
+      font-size: 1.06rem;
+      line-height: 1.9;
+      max-width: 780px;
+    }
+
+    .btn-wrap {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-red {
+      background: #ff2d2d;
+      color: white;
+      box-shadow: 0 0 28px rgba(255,0,0,0.35);
+    }
+
+    .btn-red:hover {
+      transform: translateY(-3px) scale(1.02);
+      background: #ff4747;
+    }
+
+    .btn-dark {
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-color: rgba(255,255,255,0.12);
+    }
+
+    .btn-dark:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.10);
+    }
+
+    .stats {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 780px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 22px;
+      border-radius: 28px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.03);
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      color: #ffd44d;
+      font-weight: 900;
+    }
+
+    .stat-card p {
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: #cfcfcf;
+      line-height: 1.5;
+    }
+
+    .hero-right {
+      flex: 1;
+      min-width: 300px;
+      animation: fadeUp 1.2s ease;
+    }
+
+    .video-glow {
+      position: relative;
+    }
+
+    .video-glow::before {
+      content: "";
+      position: absolute;
+      inset: -18px;
+      background: rgba(255,0,0,0.12);
+      filter: blur(45px);
+      border-radius: 40px;
+      z-index: 0;
+    }
+
+    .video-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 34px;
+      padding: 18px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 45px rgba(255,0,0,0.14);
+    }
+
+    .video-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mini-badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.10);
+      border: 1px solid rgba(255,215,0,0.20);
+      color: #ffe79d;
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .play-loud {
+      font-size: 0.78rem;
+      color: #a9a9a9;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .video-frame {
+      overflow: hidden;
+      border-radius: 26px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .video-frame iframe {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: none;
+      display: block;
+    }
+
+    .video-desc {
+      margin-top: 18px;
+      color: #d0d0d0;
+      line-height: 1.9;
+      font-size: 0.98rem;
+      padding: 0 4px;
+    }
+
+    .section-head {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 50px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,215,0,0.10);
+      border: 1px solid rgba(255,215,0,0.20);
+      color: #ffe79d;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .section-head h2 .red {
+      color: #ff2d2d;
+      text-shadow: 0 0 18px rgba(255,0,0,0.45);
+    }
+
+    .section-head p {
+      margin-top: 20px;
+      color: #cfcfcf;
+      line-height: 1.9;
+      font-size: 1.02rem;
+    }
+
+    .cards-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .glass-card {
+      background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 32px;
+      padding: 28px;
+      backdrop-filter: blur(18px);
+      transition: 0.35s ease;
+      box-shadow: 0 0 22px rgba(255,255,255,0.03);
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 40px rgba(255,0,0,0.18);
+    }
+
+    .glass-card .icon {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .glass-card h3 {
+      font-size: 1.5rem;
+      color: #ffd44d;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .glass-card p {
+      color: #d2d2d2;
+      line-height: 1.85;
+      font-size: 0.98rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 34px;
+      padding: 34px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 30px rgba(255,255,255,0.03);
+    }
+
+    .panel .small-tag {
+      display: inline-block;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .red-tag {
+      background: rgba(255,0,0,0.10);
+      border: 1px solid rgba(255,0,0,0.22);
+      color: #ffd6d6;
+    }
+
+    .gold-tag {
+      background: rgba(255,215,0,0.10);
+      border: 1px solid rgba(255,215,0,0.20);
+      color: #ffe79d;
+    }
+
+    .panel h3 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .panel p {
+      margin-top: 20px;
+      color: #d1d1d1;
+      line-height: 1.9;
+      font-size: 1rem;
+    }
+
+    .list-box {
+      margin-top: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .list-item {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 18px;
+      border-radius: 22px;
+      color: #d5d5d5;
+      line-height: 1.75;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .sub-head-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .pill-red, .pill-gold {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 900;
+    }
+
+    .pill-red {
+      background: #ff2d2d;
+      color: white;
+    }
+
+    .pill-gold {
+      background: #ffd44d;
+      color: #111;
+    }
+
+    .sub-caption {
+      color: #a9a9a9;
+      font-size: 0.92rem;
+    }
+
+    .content-card {
+      background: linear-gradient(to right, rgba(255,0,0,0.10), rgba(0,0,0,0.30));
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      border-radius: 30px;
+      backdrop-filter: blur(14px);
+      transition: 0.3s;
+      margin-bottom: 18px;
+    }
+
+    .content-card.gold {
+      background: linear-gradient(to right, rgba(255,215,0,0.10), rgba(0,0,0,0.30));
+    }
+
+    .content-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 32px rgba(255,0,0,0.14);
+    }
+
+    .content-card h4 {
+      font-size: 1.45rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .content-card p {
+      color: #d2d2d2;
+      line-height: 1.8;
+    }
+
+    .about-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 40px;
+      padding: 46px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 42px rgba(255,255,255,0.03);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .about-box h3 {
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .about-box h3 .red {
+      color: #ff2d2d;
+      text-shadow: 0 0 18px rgba(255,0,0,0.45);
+    }
+
+    .about-box h3 .gold {
+      color: #ffd44d;
+      text-shadow: 0 0 16px rgba(255,215,0,0.28);
+    }
+
+    .about-box p {
+      color: #d2d2d2;
+      line-height: 1.95;
+      font-size: 1.05rem;
+    }
+
+    .final-box {
+      text-align: center;
+      background: linear-gradient(to bottom right, rgba(255,0,0,0.10), rgba(0,0,0,0.40), rgba(255,215,0,0.10));
+      border: 1px solid rgba(255,0,0,0.18);
+      border-radius: 42px;
+      padding: 64px 28px;
+      backdrop-filter: blur(24px);
+      box-shadow: 0 0 70px rgba(255,0,0,0.16);
+    }
+
+    .final-box h2 {
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .final-box h2 .red {
+      color: #ff2d2d;
+      text-shadow: 0 0 20px rgba(255,0,0,0.55);
+    }
+
+    .final-box h2 .gold {
+      color: #ffd44d;
+      text-shadow: 0 0 18px rgba(255,215,0,0.28);
+    }
+
+    .final-box p {
+      max-width: 900px;
+      margin: 30px auto 0;
+      color: #d4d4d4;
+      line-height: 1.95;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 20px 50px;
+      color: #9d9d9d;
+      font-size: 0.95rem;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .cards-4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .two-col,
+      .content-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav a {
+        margin: 6px 10px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-4,
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 65px 5%;
+      }
+
+      .about-box {
+        padding: 34px 24px;
+      }
+
+      .panel,
+      .glass-card {
+        padding: 26px;
+      }
+
+      .final-box {
+        padding: 50px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="grid-bg"></div>
+
+  <header>
+    <div class="logo">ARCHIT AGRAWAL STUDY STUDIO</div>
+    <nav>
+      <a href="#trailer">Trailer</a>
+      <a href="#why">Why Me</a>
+      <a href="#mission">Mission</a>
+      <a href="#content">Content</a>
+      <a href="#about">About</a>
+      <a href="#join">Join</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-badge">🔥 THE 100 DAYS STUDENT CREATOR WAR</div>
+      <h1>
+        Abhi chhota hoon...<br>
+        <span class="red">par rukunga nahi.</span><br>
+        <span class="gold">Yeh channel ek din tahalka machayega.</span>
+      </h1>
+      <p>
+        Yeh sirf ek aur educational page nahi hai. Yeh us student ki website hai jo padhai ko boring nahi,
+        <b style="color:white;">powerful, addictive aur yaad reh jaane layak</b> banana chahta hai.
+        Yahan GK, Science, SST, amazing facts aur high-retention study content ko aise present kiya jaata hai
+        ki viewer scroll karke aage badhne se pehle do baar soche.
+      </p>
+
+      <div class="btn-wrap">
+        <a class="btn btn-red" href="https://youtube.com/@architmakerking2025?si=LW_8LIkESakbuq0H" target="_blank">SUBSCRIBE NOW</a>
+        <a class="btn btn-dark" href="#trailer">WATCH TRAILER</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h3>100</h3>
+          <p>Days Challenge</p>
+        </div>
+        <div class="stat-card">
+          <h3>1</h3>
+          <p>Silver Play Button Goal</p>
+        </div>
+        <div class="stat-card">
+          <h3>Daily</h3>
+          <p>Shorts + Long Content</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right" id="trailer">
+      <div class="video-glow">
+        <div class="video-card">
+          <div class="video-top">
+            <div class="mini-badge">👑 OFFICIAL CHANNEL TRAILER</div>
+            <div class="play-loud">Play It Loud</div>
+          </div>
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/-Jz9oA_n83o?rel=0"
+              title="Archit Study Studio Trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+          <div class="video-desc">
+            Yeh trailer ek intro nahi — ek announcement hai. Agar tum smart ho, to tum samajh jaoge ki yeh journey abhi shuru hui hai.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="section-head">
+      <div class="section-tag">✨ WHY THIS CHANNEL HITS DIFFERENT</div>
+      <h2>Sab padhate hain... <span class="red">par sab yaad nahi rehte.</span></h2>
+      <p>
+        Farq tab padta hai jab content bas information nahi deta — impact bhi chhodta hai.
+        Aur wahi yahaan hota hai.
+      </p>
+    </div>
+
+    <div class="cards-4">
+      <div class="glass-card">
+        <div class="icon">⚡</div>
+        <h3>Scroll ko Todne Wale Shorts</h3>
+        <p>Aise shorts jo viewer ko bas dekhne par majboor nahi karte — repeat watch karwa dete hain.</p>
+      </div>
+      <div class="glass-card">
+        <div class="icon">🧠</div>
+        <h3>Boring Topics ka Cinematic Version</h3>
+        <p>GK, Science, SST aur study ko class lecture nahi, full impact content bana diya jaata hai.</p>
+      </div>
+      <div class="glass-card">
+        <div class="icon">🚀</div>
+        <h3>Student Se Brand Banane Ki Journey</h3>
+        <p>Ye channel bas videos upload nahi kar raha — apni pehchaan build kar raha hai.</p>
+      </div>
+      <div class="glass-card">
+        <div class="icon">🛡️</div>
+        <h3>Viewer Ko Timepass Nahi, Value</h3>
+        <p>Har video ka target simple hai: hook, hold, impact aur yaad reh jaana.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mission">
+    <div class="two-col">
+      <div class="panel">
+        <div class="small-tag red-tag">🎯 THE MISSION</div>
+        <h3>Silver Play Button sapna nahi... seedha target hai.</h3>
+        <p>
+          Is channel ka aim bas videos daalna nahi hai. Aim hai ek aisa naam banana jise students
+          search karke trust karein, dekhein aur regularly wapas aayein.
+        </p>
+        <p>
+          100 din ki mehnat, daily content aur smart execution ke saath ek aisa momentum create karna hai
+          jahan growth luck se nahi, <b style="color:white;">discipline se aaye.</b>
+        </p>
+      </div>
+
+      <div class="panel">
+        <div class="small-tag gold-tag">⭐ WHAT YOU’LL GET HERE</div>
+        <h3>Har visit pe kuch aisa jo chipak jaaye.</h3>
+        <div class="list-box">
+          <div class="list-item">➡️ Amazing GK Facts jo logon ko shock kar dein</div>
+          <div class="list-item">➡️ Science ke aise raaz jo school books mein feel hi nahi hote</div>
+          <div class="list-item">➡️ SST aur Geography ko viral banane wale smart topics</div>
+          <div class="list-item">➡️ Long videos jo viewer ko beech mein bhaagne na dein</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="content">
+    <div class="section-head">
+      <div class="section-tag" style="background: rgba(255,0,0,0.10); border-color: rgba(255,0,0,0.20); color:#ffd6d6;">▶ LATEST CONTENT PREVIEW</div>
+      <h2>Jo dekhoge, <span class="red">woh yaad rahega.</span></h2>
+      <p>
+        Yeh bas demo cards nahi hain. Yeh us type ka content feel hai jo viewer ko rokta hai,
+        chipkata hai aur wapas laata hai.
+      </p>
+    </div>
+
+    <div class="content-grid">
+      <div>
+        <div class="sub-head-row">
+          <div class="pill-red">🔥 Latest Shorts</div>
+          <div class="sub-caption">Fast hooks • Viral feel • Repeat watch</div>
+        </div>
+
+        <div class="content-card">
+          <h4>Aisa desh jahan suraj mahino tak nahi doobta 😱</h4>
+          <p>2 sec hook + loop ending</p>
+        </div>
+
+        <div class="content-card">
+          <h4>Yeh science fact tumhari soch hila dega ⚡</h4>
+          <p>Shock + curiosity format</p>
+        </div>
+
+        <div class="content-card">
+          <h4>India ka hidden geography fact 🌍</h4>
+          <p>Map + mystery style</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="sub-head-row">
+          <div class="pill-gold">🎬 Latest Long Videos</div>
+          <div class="sub-caption">Retention • Storytelling • Smart study</div>
+        </div>
+
+        <div class="content-card gold">
+          <h4>Introduction to Japan – Powerful Full Chapter Experience</h4>
+          <p>Storytelling + visuals + retention</p>
+        </div>
+
+        <div class="content-card gold">
+          <h4>Science Topic Explained Like a Movie</h4>
+          <p>Simple + impactful explanation</p>
+        </div>
+
+        <div class="content-card gold">
+          <h4>SST Chapter Breakdown That Doesn’t Feel Like School</h4>
+          <p>Cinematic educational style</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about-box">
+      <div class="about-grid">
+        <div>
+          <div class="section-tag" style="margin-bottom:20px; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.10); color:#f3f3f3;">📘 ABOUT ARCHIT</div>
+          <h3>
+            Ek student.<br>
+            <span class="red">Ek creator.</span><br>
+            <span class="gold">Ek build hota hua brand.</span>
+          </h3>
+        </div>
+        <div>
+          <p>
+            Archit Agrawal Study Studio kisi company ne nahi banaya. Yeh ek student ke vision se bana hai.
+            Jo sirf marks ke liye nahi, impact ke liye content banana chahta hai.
+            Isi liye yahaan har video mein ek cheez common milegi —
+            <b style="color:white;">energy.</b>
+          </p>
+          <p style="margin-top:18px;">
+            Yeh channel un logon ke liye hai jo padhai ko sirf school ka kaam nahi,
+            apni growth ka weapon banana chahte hain.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="final-box">
+      <div class="section-tag" style="background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.10); color:#f3f3f3;">🔥 BEFORE YOU LEAVE...</div>
+      <h2>
+        Kal ko jab yeh channel<br>
+        <span class="red">udega...</span><br>
+        <span class="gold">tab bas ek hi regret nahi hona chahiye.</span>
+      </h2>
+      <p>
+        <b style="color:white;">“Kaash maine pehle hi subscribe kar liya hota.”</b><br><br>
+        Agar tumhe strong content, smart learning aur ek real creator journey ka part banna hai,
+        to abhi join karo. Yeh beginning hai — aur beginning ke log hi sabse zyada yaad rakhe jaate hain.
+      </p>
+
+      <div class="btn-wrap" style="justify-content:center; margin-top:34px;">
+        <a class="btn btn-red" href="https://youtube.com/@architmakerking2025?si=LW_8LIkESakbuq0H" target="_blank">
+          SUBSCRIBE & JOIN THE JOURNEY
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Archit Agrawal Study Studio • Built for Growth • Built to Explode 🚀
+  </footer>
+
+</body>
+</html>
